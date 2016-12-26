@@ -81,6 +81,12 @@ window.onload = function () {
 			unknown(next, 1);
 			unknown(following, 2);
 		}
+		
+		// Show notice
+		if (result['message']) {
+			document.getElementById('alert-text').innerHTML = result['message'];
+			document.getElementById('alert').style.display = "block";
+		}
 	}
 
 	// Display error messages
