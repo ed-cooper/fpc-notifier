@@ -6,7 +6,7 @@ window.onload = function () {
     var successive = document.getElementById('successiveCurators');
 	
 	// Get file path, add time-stamp to prevent caching
-	var filePath = "http://scratchtools.tk/fpc/data/data.json?u=" + new Date().getTime();
+	var filePath = "http://scratchtools.tk/fpc/api/v1/json/?u=" + new Date().getTime();
 	
 	// Get date info
 	var weekStart;
