@@ -1,0 +1,20 @@
+﻿{
+    "manifest_version": 2,
+
+    "name": "FPC Notifier",
+    "description": "Displays the current, next and following FPCs on https://scratch.mit.edu/",
+    "version": "2.6",
+
+    "icons": { "16": "img/icon16.png",
+           "32": "img/icon32.png",
+           "48": "img/icon48.png",
+          "128": "img/icon128.png" },
+
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "http://scratchtools.tk/"
+  ]
+}

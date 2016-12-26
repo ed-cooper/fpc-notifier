@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>
+        FPC Notifier
+    </title>
+
+    <!--Styles-->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <!--Scripts-->
+    <script src="js/popup.js"></script>
+</head>
+<body>
+    <img src="img/title.png" alt="FPC Notifier" />
+	<div class="hr"></div>
+	<a target="_blank">
+		<div class="container">
+			<h4 class="header">
+				Current Curator:
+			</h4>
+			<span id="currentCurator" class="gray">Loading</span>
+		</div>
+	</a>
+	<a target="_blank">
+		<div class="container">
+			<h4 class="header">
+				Next Curator:
+			</h4>
+			<span id="nextCurator" class="gray">Loading</span>
+		</div>
+	</a>
+	<a target="_blank">
+		<div class="container">
+			<h4 class="header">
+				Following Curator:
+			</h4>
+			<span id="followingCurator" class="gray">Loading</span>
+		</div>
+	</a>
+	<div id="successiveContainer" class="container hidden">
+		<h4 class="header">
+			Successive Curators:
+		</h4>
+		<p id="successiveCurators"></p>
+	</div>
+	<footer class="gray">
+		Extension designed and maintained by <a href="https://scratch.mit.edu/users/chooper100" target="_blank">@chooper100</a>.
+	</footer>
+</body>
+</html>
