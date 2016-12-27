@@ -2,9 +2,12 @@
     font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
     font-size: 100%;
     width: 280px;
+	cursor: default;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
-#head {
+header {
 	padding-bottom: 3px;
 	margin-bottom: 5px;
 	border-bottom: 1px solid #ddd;
@@ -13,40 +16,36 @@
 #alert {
     background-color: #ffe6e6;
 	box-shadow: 0 1px 2px #ffb3b3;
+	color: red;
+}
+
+.box {
     border-radius: 1px;
     margin-bottom: 10px;
     padding: 5px;
 	transition: all 0.2s;
-	color: red;	
-	display: none;
 }
 
-.container {
-    background-color: #f5f5f5;
-	box-shadow: 0 1px 2px #ccc;
-    border-radius: 1px;
-    margin-bottom: 10px;
-    padding: 5px;
-	transition: all 0.2s;
-	color: #0066cc;
-}
-
-a[href] > .container:hover, #successiveContainer:hover {
-    background-color: #f8f8f8;
-	box-shadow: 0 1px 5px #bbb;
-}
-
-.header {
+.box h1 {
+	font-size: 16px;
     font-weight: bold;
     margin: 0 0 5px 0;
 }
 
-span.gray {
-    color: gray;
+.hover-box {
+    background-color: #f5f5f5;
+	box-shadow: 0 1px 2px #ccc;
+	display: block;
 }
 
-.container  > .date {
-	color: gray;
+.hover-box:hover {
+    background-color: #f8f8f8;
+	box-shadow: 0 1px 5px #bbb;
+	text-decoration: none;
+}
+
+.hover-box h1 {
+	color: black;
 }
 
 .date {
@@ -60,14 +59,8 @@ a {
 	color: #0066cc;
 }
 
-.container > .header {
-	color: black;
-}
-
-#successiveContainer, .container {
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-	cursor: default;
+a:hover {
+	text-decoration: underline;
 }
 
 #successiveCurators {
@@ -79,23 +72,19 @@ a {
 	margin: 3px 0;
 }
 
-#successiveCurators > a:hover {
-	text-decoration: underline;
-}
-
-#successiveCurators > span.gray {
+#successiveCurators > .gray {
 	margin: 3px 0;
 	display: block;
-}
-
-.hidden {
-	display: none;
 }
 
 footer {
     font-size: 10px;
 }
 
-footer > a:hover {
-    text-decoration: underline;
+.hidden {
+	display: none;
+}
+
+.gray {
+    color: gray;
 }

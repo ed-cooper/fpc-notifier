@@ -72,7 +72,7 @@ window.onload = function () {
 						}
 					}
 					// Show successive curators container
-					document.getElementById('successiveContainer').className = "container";
+					document.getElementById('successiveContainer').className = "box hover-box";
 				}
 			} else {
 				unknown(following, 2);
@@ -85,7 +85,7 @@ window.onload = function () {
 		// Show notice
 		if (result['message']) {
 			document.getElementById('alert-text').innerHTML = result['message'];
-			document.getElementById('alert').style.display = "block";
+			document.getElementById('alert').className = "box";
 		}
 	}
 
