@@ -25,19 +25,23 @@ window.onload = function () {
 	
     // Init http request
     var xmlHttp = new XMLHttpRequest();
+    
     xmlHttp.ontimeout = function() {
         console.log('Timeout');
         error();
     };
+    
     xmlHttp.onerror = function() {
         console.log('Error');
         error();
     };
+    
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             downloaded(JSON.parse(xmlHttp.responseText));
         }
     };
+    
     xmlHttp.open("GET", filePath, true);
     xmlHttp.timeout = 10000;
 
@@ -112,9 +116,12 @@ window.onload = function () {
     function load(data, element, index) {
         if (data !== '') {
             var date = document.createElement('span');
+            
             date.className = 'date';
             date.innerText = getWeekRange(index);
+            
             element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
+            
             element.innerHTML = '<span title="@' + data +'">@' + data + '</span>';
             element.parentElement.parentElement.href = "https://scratch.mit.edu/users/" + data + "/";
             element.className = '';
@@ -126,9 +133,12 @@ window.onload = function () {
     // Marks the fpc for the specified element as unknown
     function unknown(element, index) {
         var date = document.createElement('span');
+        
         date.className = 'date';
         date.innerText = getWeekRange(index);
+        
         element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
+        
         element.title = "The FPC during this period is currently unknown";
         element.innerText = 'Unknown';
     }
@@ -143,8 +153,10 @@ window.onload = function () {
     // Adds the specified amount of days to a specified date
     function offsetDate(d, offset) {
         var newDate = new Date();
+        
         newDate.setMonth(d.getMonth());
         newDate.setDate(d.getDate() + offset);
+        
         return newDate;
     }
 
