@@ -28,16 +28,16 @@ window.onload = function () {
 	xmlHttp.ontimeout = function() {
 		console.log('Timeout');
 		error();
-	}
+	};
 	xmlHttp.onerror = function() {
 		console.log('Error');
 		error();
-	}
+	};
 	xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             downloaded(JSON.parse(xmlHttp.responseText));
-		}
-    }
+		};
+    };
     xmlHttp.open("GET", filePath, true);
 	xmlHttp.timeout = 10000;
 	
