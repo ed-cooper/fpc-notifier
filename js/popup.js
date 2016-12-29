@@ -51,16 +51,21 @@ window.onload = function () {
 
         // Load current fpc
         load(result['current'], current, 0);
+        
         if (result['following'].length > 0) {
             // Load next fpc
             load(result['following'][0], next, 1);
+            
             if (result['following'].length > 1) {
                 // Load following fpc
                 load(result['following'][1], following, 2);
+                
                 if (result['following'].length > 2) {
                     // Add successive curators
+                    
                     for (var i = 2; i < result['following'].length; i++) {
                         successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
+                        
                         if (result['following'][i] !== '') {
                             if (result['following'][i][result['following'][i].length - 1] === "?") {
                                 successive.innerHTML +=
