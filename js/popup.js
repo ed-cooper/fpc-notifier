@@ -98,7 +98,8 @@ window.onload = function () {
                             // No known FPC for this period
                             
                             // Display unknown message
-                            successive.innerHTML += '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
+                            successive.innerHTML +=
+                                    '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
                         }
                     }
                     
