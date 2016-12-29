@@ -65,18 +65,29 @@ window.onload = function () {
                 load(result['following'][1], following, 2);
                 
                 if (result['following'].length > 2) {
-                    // Add successive curators
+                    // There are successive curators
                     
+                    // For each successive curator
                     for (var i = 2; i < result['following'].length; i++) {
+                        // Add date
                         successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
                         
+                        // Check if curator has been suggested
                         if (result['following'][i] !== '') {
+                            // Curator has been suggested
+                            
                             if (result['following'][i][result['following'][i].length - 1] === "?") {
+                                // Curator is not yet confirmed
+                                
+                                // Add curator with TBC warning and no link
                                 successive.innerHTML +=
                                         '<span class="gray" title="This FPC has not yet been confirmed">@' +
                                         result['following'][i].substr(0, result['following'][i].length - 1) +
                                         ' (TBC)</span>';
                             } else {
+                                // Curator is confirmed
+                                
+                                // Add curator with link
                                 successive.innerHTML +=
                                         '<a href="https://scratch.mit.edu/users/' + 
                                         result['following'][i] + '/" target="_blank" title="@' +
@@ -84,16 +95,25 @@ window.onload = function () {
                                         result['following'][i] + '</a>';
                             }
                         } else {
+                            // No known FPC for this period
+                            
+                            // Display unknown message
                             successive.innerHTML += '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
                         }
                     }
-                    // Show successive curators container
+                    
+                    // Show container for successive curators
                     document.getElementById('successiveContainer').className = "box hover-box";
                 }
             } else {
+                // Following FPC not known
+                
                 unknown(following, 2);
             }
         } else {
+            // Next and following FPCs are unknown
+            // (Ideally this case shouldn't happen)
+            
             unknown(next, 1);
             unknown(following, 2);
         }
@@ -105,16 +125,22 @@ window.onload = function () {
         }
     }
 
-    // Display error messages
+    // Display error messages in every container
     function error() {
         current.innerText = 'Error';
         next.innerText = 'Error';
         following.innerText = 'Error';
     }
 
-    // Loads the curator name into the specified element
-    function load(data, element, index) {
-        if (data !== '') {
+    // Loads the curator name into the specified container
+    function load(user, element, index) {
+        // Check if curator has been suggested
+        
+        if (user !== '') {
+            // Curator has been confirmed for this period
+            
+            // TODO: Add code for TBC FPCs
+            
             var date = document.createElement('span');
             
             date.className = 'date';
@@ -122,10 +148,11 @@ window.onload = function () {
             
             element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
             
-            element.innerHTML = '<span title="@' + data +'">@' + data + '</span>';
-            element.parentElement.parentElement.href = "https://scratch.mit.edu/users/" + data + "/";
+            element.innerHTML = '<span title="@' + user +'">@' + user + '</span>';
+            element.parentElement.parentElement.href = "https://scratch.mit.edu/users/" + user + "/";
             element.className = '';
         } else {
+            // Curator is not known for this period
             unknown(element, index);
         }
     }
