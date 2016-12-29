@@ -34,7 +34,7 @@ window.onload = function () {
         error();
     };
     xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             downloaded(JSON.parse(xmlHttp.responseText));
         }
     };
@@ -62,7 +62,7 @@ window.onload = function () {
                     for (var i = 2; i < result['following'].length; i++) {
                         successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
                         if (result['following'][i] !== '') {
-                            if (result['following'][i][result['following'][i].length - 1] == "?") {
+                            if (result['following'][i][result['following'][i].length - 1] === "?") {
                                 successive.innerHTML += '<span class="gray" title="This FPC has not yet been confirmed">@' + result['following'][i].substr(0, result['following'][i].length - 1) + ' (TBC)</span>';
                             } else {
                                 successive.innerHTML += '<a href="https://scratch.mit.edu/users/' + result['following'][i] + '/" target="_blank" title="@' + result['following'][i] + '">@' + result['following'][i] + '</a>';
