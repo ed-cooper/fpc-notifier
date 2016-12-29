@@ -6,7 +6,7 @@ window.onload = function () {
     var successive = document.getElementById('successiveCurators');
 	
     // Get file path, add time-stamp to prevent caching
-    var filePath = "http://scratchtools.tk/fpc/api/v1/json/?u=" + new Date().getTime();
+    var filePath = 'http://scratchtools.tk/fpc/api/v1/json/?u=' + new Date().getTime();
 
     // Get date info
     var weekStart;
@@ -42,7 +42,7 @@ window.onload = function () {
         }
     };
     
-    xmlHttp.open("GET", filePath, true);
+    xmlHttp.open('GET', filePath, true);
     xmlHttp.timeout = 10000;
 
     // Send http request
@@ -76,8 +76,9 @@ window.onload = function () {
                         if (result['following'][i] !== '') {
                             // Curator has been suggested
                             
+                            // Check if last character is a '?'
                             // Thus indicating if the FPC is confirmed
-                            if (result['following'][i][result['following'][i].length - 1] === "?") {
+                            if (result['following'][i][result['following'][i].length - 1] === '?') {
                                 // Curator is not yet confirmed
                                 
                                 // Add curator with TBC warning and no link
@@ -105,7 +106,7 @@ window.onload = function () {
                     }
                     
                     // Show container for successive curators
-                    document.getElementById('successiveContainer').className = "box hover-box";
+                    document.getElementById('successiveContainer').className = 'box hover-box';
                 }
             } else {
                 // Following FPC not known
@@ -123,7 +124,7 @@ window.onload = function () {
         // Show notice
         if (result['message']) {
             document.getElementById('alert-text').innerHTML = result['message'];
-            document.getElementById('alert').className = "box";
+            document.getElementById('alert').className = 'box';
         }
     }
 
@@ -151,7 +152,7 @@ window.onload = function () {
             element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
             
             element.innerHTML = '<span title="@' + user +'">@' + user + '</span>';
-            element.parentElement.parentElement.href = "https://scratch.mit.edu/users/" + user + "/";
+            element.parentElement.parentElement.href = 'https://scratch.mit.edu/users/' + user + '/';
             element.className = '';
         } else {
             // Curator is not known for this period
@@ -168,7 +169,7 @@ window.onload = function () {
         
         element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
         
-        element.title = "The FPC during this period is currently unknown";
+        element.title = 'The FPC during this period is currently unknown';
         element.innerText = 'Unknown';
     }
 
