@@ -63,9 +63,16 @@ window.onload = function () {
                         successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
                         if (result['following'][i] !== '') {
                             if (result['following'][i][result['following'][i].length - 1] === "?") {
-                                successive.innerHTML += '<span class="gray" title="This FPC has not yet been confirmed">@' + result['following'][i].substr(0, result['following'][i].length - 1) + ' (TBC)</span>';
+                                successive.innerHTML +=
+                                        '<span class="gray" title="This FPC has not yet been confirmed">@' +
+                                        result['following'][i].substr(0, result['following'][i].length - 1) +
+                                        ' (TBC)</span>';
                             } else {
-                                successive.innerHTML += '<a href="https://scratch.mit.edu/users/' + result['following'][i] + '/" target="_blank" title="@' + result['following'][i] + '">@' + result['following'][i] + '</a>';
+                                successive.innerHTML +=
+                                        '<a href="https://scratch.mit.edu/users/' + 
+                                        result['following'][i] + '/" target="_blank" title="@' +
+                                        result['following'][i] + '">@' +
+                                        result['following'][i] + '</a>';
                             }
                         } else {
                             successive.innerHTML += '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
@@ -123,7 +130,9 @@ window.onload = function () {
 
     // Gets a human readable range representing the specified week (0 = this week)
     function getWeekRange(week) {
-        return formatDate(offsetDate(weekStart, week * 7)) + ' - ' + formatDate(offsetDate(weekStart, (week + 1) * 7));
+        return formatDate(offsetDate(weekStart, week * 7)) +
+                ' - ' +
+                formatDate(offsetDate(weekStart, (week + 1) * 7));
     }
 
     // Adds the specified amount of days to a specified date
