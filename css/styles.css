@@ -2,56 +2,56 @@
     font-family: 'Segoe UI', 'Lucida Grande', Tahoma, sans-serif;
     font-size: 100%;
     width: 280px;
-	cursor: default;
-	-webkit-touch-callout: none;
+    cursor: default;
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
 }
 
 header {
-	padding-bottom: 3px;
-	margin-bottom: 5px;
-	border-bottom: 1px solid #ddd;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
 }
 
 #alert {
     background-color: #ffe6e6;
-	box-shadow: 0 1px 2px #ffb3b3;
-	color: red;
+    box-shadow: 0 1px 2px #ffb3b3;
+    color: red;
 }
 
 .box {
     border-radius: 1px;
     margin-bottom: 10px;
     padding: 5px;
-	transition: all 0.2s;
+    transition: all 0.2s;
 }
 
 .box h1 {
-	font-size: 16px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0 0 5px 0;
 }
 
 .hover-box {
     background-color: #f5f5f5;
-	box-shadow: 0 1px 2px #ccc;
-	display: block;
+    box-shadow: 0 1px 2px #ccc;
+    display: block;
 }
 
 .hover-box:hover {
     background-color: #f8f8f8;
-	box-shadow: 0 1px 5px #bbb;
-	text-decoration: none;
+    box-shadow: 0 1px 5px #bbb;
+    text-decoration: none;
 }
 
 .hover-box h1 {
-	color: black;
+    color: black;
 }
 
 .date {
-	float: right;
-	color: gray;
-	margin-right: 4px;
+    float: right;
+    color: gray;
+    margin-right: 4px;
 }
 
 a {
@@ -60,21 +60,21 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #successiveCurators {
-	margin: 0;
+    margin: 0;
 }
 
 #successiveCurators > a {
-	display: block;
-	margin: 3px 0;
+    display: block;
+    margin: 3px 0;
 }
 
 #successiveCurators > .gray {
-	margin: 3px 0;
-	display: block;
+    margin: 3px 0;
+    display: block;
 }
 
 footer {
@@ -82,7 +82,7 @@ footer {
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 .gray {
