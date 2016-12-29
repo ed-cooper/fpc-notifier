@@ -10,6 +10,7 @@ actually happened.
 
 However, please don't report out of date information here. Instead, a better
 place for that would be on @thenextcurator's Scratch profile:
+
 https://scratch.mit.edu/users/thenextcurator/
 
 ## Suggesting features
@@ -19,6 +20,7 @@ however there is a limit on what can be done.
 For people looking into developing their own apps, I'm also interested in
 feature suggestions for the API. You can view the FPC Notifier API homepage over
 here:
+
 http://scratchtools.tk/fpc/api/
 
 To suggest a feature, simply open up a new issue with a description of your
@@ -39,4 +41,5 @@ Please be aware that I am currently following these code practices:
 If you could ensure that your code follows these, it would be helpful.
 
 Thanks,
+
 *Chooper*
