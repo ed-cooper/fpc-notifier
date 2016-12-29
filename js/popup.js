@@ -76,6 +76,7 @@ window.onload = function () {
                         if (result['following'][i] !== '') {
                             // Curator has been suggested
                             
+                            // Thus indicating if the FPC is confirmed
                             if (result['following'][i][result['following'][i].length - 1] === "?") {
                                 // Curator is not yet confirmed
                                 
