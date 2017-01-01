@@ -140,20 +140,30 @@ window.onload = function () {
         // Check if curator has been suggested
         
         if (user !== '') {
-            // Curator has been confirmed for this period
-            
-            // TODO: Add code for TBC FPCs
+            // Curator has been suggested for this period
             
             var date = document.createElement('span');
-            
+
             date.className = 'date';
             date.innerText = getWeekRange(index);
-            
+
             element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
-            
-            element.innerHTML = '<span title="@' + user +'">@' + user + '</span>';
-            element.parentElement.parentElement.href = 'https://scratch.mit.edu/users/' + user + '/';
-            element.className = '';
+
+            if (user.endsWith('?')) {
+                //FPC not confirmed
+                
+                element.innerHTML =
+                        '<span title="This FPC has not yet been confirmed"">@' + 
+                        user.substring(0, user.length - 1) + 
+                        ' (TBC)</span>';
+                element.className = 'gray';
+            } else {
+                //FPC was confirmed
+                
+                element.innerHTML = '<span title="@' + user +'">@' + user + '</span>';
+                element.parentElement.href = 'https://scratch.mit.edu/users/' + user + '/';
+                element.className = '';
+            }
         } else {
             // Curator is not known for this period
             unknown(element, index);
