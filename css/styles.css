@@ -19,6 +19,22 @@ header {
     color: #cc5835;
 }
 
+.close {
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    opacity: .2;
+}
+
+.close:hover {
+    opacity: .4;
+}
+
 .box {
     border-radius: 1px;
     margin-bottom: 10px;

@@ -4,6 +4,7 @@ window.onload = function () {
     var next = document.getElementById('nextCurator');
     var following = document.getElementById('followingCurator');
     var successive = document.getElementById('successiveCurators');
+    var alertClose = document.getElementById('alert-close');
 	
     // Get file path, add time-stamp to prevent caching
     var filePath = 'http://scratchtools.tk/fpc/api/v1/json/?u=' + new Date().getTime();
@@ -204,4 +205,9 @@ window.onload = function () {
     function formatDate(d) {
         return d.getDate() + ' ' + monthNames[d.getMonth()];
     }
+    
+    // Add close button click event
+    alertClose.onclick = function() {
+        document.getElementById('alert').className = 'hidden';
+    };
 };
