@@ -7,7 +7,7 @@ window.onload = function () {
     var alertClose = document.getElementById('alert-close');
 	
     // Get file path, add time-stamp to prevent caching
-    var filePath = 'http://scratchtools.tk/fpc/api/v1/json/?u=' + new Date().getTime();
+    var filePath = 'http://scratchtools/fpc/api/v1/json/?u=' + new Date().getTime();
 
     // Get date info
     var weekStart;
@@ -51,81 +51,84 @@ window.onload = function () {
 	
     // Interpret downloaded data
     function downloaded(result) {
-        // Get start date
-        weekStart = new Date(result['date']);
+        if (typeof result['error'] === 'undefined') {// Get start date
+            weekStart = new Date(result['date']);
 
-        // Load current fpc
-        load(result['current'], current, 0);
-        
-        if (result['following'].length > 0) {
-            // Load next fpc
-            load(result['following'][0], next, 1);
-            
-            if (result['following'].length > 1) {
-                // Load following fpc
-                load(result['following'][1], following, 2);
-                
-                if (result['following'].length > 2) {
-                    // There are successive curators
-                    
-                    // For each successive curator
-                    for (var i = 2; i < result['following'].length; i++) {
-                        // Add date
-                        successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
-                        
-                        // Check if curator has been suggested
-                        if (result['following'][i] !== '') {
-                            // Curator has been suggested
-                            
-                            // Check if last character is a '?'
-                            // Thus indicating if the FPC is confirmed
-                            if (result['following'][i][result['following'][i].length - 1] === '?') {
-                                // Curator is not yet confirmed
-                                
-                                // Add curator with TBC warning and no link
-                                successive.innerHTML +=
-                                        '<span class="gray" title="This FPC has not yet been confirmed">@' +
-                                        result['following'][i].substr(0, result['following'][i].length - 1) +
-                                        ' (TBC)</span>';
+            // Load current fpc
+            load(result['current'], current, 0);
+
+            if (result['following'].length > 0) {
+                // Load next fpc
+                load(result['following'][0], next, 1);
+
+                if (result['following'].length > 1) {
+                    // Load following fpc
+                    load(result['following'][1], following, 2);
+
+                    if (result['following'].length > 2) {
+                        // There are successive curators
+
+                        // For each successive curator
+                        for (var i = 2; i < result['following'].length; i++) {
+                            // Add date
+                            successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
+
+                            // Check if curator has been suggested
+                            if (result['following'][i] !== '') {
+                                // Curator has been suggested
+
+                                // Check if last character is a '?'
+                                // Thus indicating if the FPC is confirmed
+                                if (result['following'][i][result['following'][i].length - 1] === '?') {
+                                    // Curator is not yet confirmed
+
+                                    // Add curator with TBC warning and no link
+                                    successive.innerHTML +=
+                                            '<span class="gray" title="This FPC has not yet been confirmed">@' +
+                                            result['following'][i].substr(0, result['following'][i].length - 1) +
+                                            ' (TBC)</span>';
+                                } else {
+                                    // Curator is confirmed
+
+                                    // Add curator with link
+                                    successive.innerHTML +=
+                                            '<a href="https://scratch.mit.edu/users/' + 
+                                            result['following'][i] + '/" target="_blank" title="@' +
+                                            result['following'][i] + '">@' +
+                                            result['following'][i] + '</a>';
+                                }
                             } else {
-                                // Curator is confirmed
-                                
-                                // Add curator with link
+                                // No known FPC for this period
+
+                                // Display unknown message
                                 successive.innerHTML +=
-                                        '<a href="https://scratch.mit.edu/users/' + 
-                                        result['following'][i] + '/" target="_blank" title="@' +
-                                        result['following'][i] + '">@' +
-                                        result['following'][i] + '</a>';
+                                        '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
                             }
-                        } else {
-                            // No known FPC for this period
-                            
-                            // Display unknown message
-                            successive.innerHTML +=
-                                    '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
                         }
+
+                        // Show container for successive curators
+                        document.getElementById('successiveContainer').className = 'box hover-box';
                     }
-                    
-                    // Show container for successive curators
-                    document.getElementById('successiveContainer').className = 'box hover-box';
+                } else {
+                    // Following FPC not known
+
+                    unknown(following, 2);
                 }
             } else {
-                // Following FPC not known
-                
+                // Next and following FPCs are unknown
+                // (Ideally this case shouldn't happen)
+
+                unknown(next, 1);
                 unknown(following, 2);
             }
-        } else {
-            // Next and following FPCs are unknown
-            // (Ideally this case shouldn't happen)
-            
-            unknown(next, 1);
-            unknown(following, 2);
-        }
 
-        // Show notice
-        if (result['message']) {
-            document.getElementById('alert-text').innerHTML = result['message'];
-            document.getElementById('alert').className = 'box';
+            // Show notice
+            if (result['message']) {
+                document.getElementById('alert-text').innerHTML = result['message'];
+                document.getElementById('alert').className = 'box';
+            }
+        } else {
+            error();
         }
     }
 
