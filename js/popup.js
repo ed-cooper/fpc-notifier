@@ -82,22 +82,24 @@ window.onload = function () {
                     if (result['curators'][i]['confirmed']) {
                         // FPC was confirmed
                         
-                        containers[i].title = '@' + result['curators'][i]['user'];
                         containers[i].innerHTML = '@' + result['curators'][i]['user'];
                         containers[i].className = '';
                         
                         parent.className = 'box shadow-box hover';
+                        parent.title = '@' + result['curators'][i]['user'];
                         parent.href = result['curators'][i]['suggest_url'];
                     } else {
                         // FPC not confirmed
 
                         containers[i].innerHTML = '@' + result['curators'][i]['user'] + ' (TBC)';
-                        containers[i].title = 'This FPC has not yet been confirmed';
                         containers[i].className = 'gray';
+                        
+                        parent.title = 'This FPC has not yet been confirmed';
                     }
                 } else {
-                    containers[i].title = 'The FPC during this period is currently unknown';
                     containers[i].innerHTML = 'Unknown';
+                    
+                    parent.title = 'The FPC during this period is currently unknown';
                 }
             }
 
