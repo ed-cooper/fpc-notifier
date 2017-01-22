@@ -53,6 +53,9 @@ window.onload = function () {
             // Load current, next and following curators
             for (var i = 0; i < 3; i++) {
                 
+                // Get container parent
+                var parent = containers[i].parentElement;
+                
                 // Display week range
                 
                 var date = document.createElement('span');
@@ -63,9 +66,9 @@ window.onload = function () {
                         ' - ' +
                         formatDate(new Date(result['curators'][i]['end']));
 
-                containers[i].parentElement.insertBefore(
+                parent.insertBefore(
                         date, 
-                        containers[i].parentElement.childNodes[0]
+                        parent.childNodes[0]
                 );
                 
                 // Load curator
@@ -83,8 +86,8 @@ window.onload = function () {
                         containers[i].innerHTML = '@' + result['curators'][i]['user'];
                         containers[i].className = '';
                         
-                        containers[i].parentElement.className = 'box shadow-box hover';
-                        containers[i].parentElement.href = result['curators'][i]['suggest_url'];
+                        parent.className = 'box shadow-box hover';
+                        parent.href = result['curators'][i]['suggest_url'];
                     } else {
                         // FPC not confirmed
 
