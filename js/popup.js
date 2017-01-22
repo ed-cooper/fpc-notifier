@@ -29,8 +29,12 @@ window.onload = function () {
             try {
                 downloaded(JSON.parse(xmlHttp.responseText));
             } catch(e) {
-                error();
-                console.log('Bad JSON syntax');
+                if (e instanceof SyntaxError) {
+                    error();
+                    console.log('Bad JSON syntax');
+                } else {
+                    throw e;
+                }
             }
         }
     };
@@ -49,7 +53,40 @@ window.onload = function () {
             // Load current, following and successive curators
             for (var i = 0; i < 3; i++) {
                 if (i < result['curators'].length && result['curators'][i]['user']) {
-                    load(result['curators'][i]['user'], containers[i]);
+
+                    var date = document.createElement('span');
+
+                    date.className = 'date';
+                    date.innerText = 'Start - End';
+
+                    containers[i].parentElement.insertBefore(
+                            date, 
+                            containers[i].parentElement.childNodes[0]
+                    );
+
+                    // Check if FPC is confirmed
+                    
+                    if (result['curators'][i]['confirmed']) {
+                        //FPC was confirmed
+
+                        containers[i].innerHTML =
+                                '<span title="@' +
+                                result['curators'][i]['user'] +
+                                '">@' +
+                                result['curators'][i]['user'] + 
+                                '</span>';
+                        
+                        containers[i].parentElement.href = result['curators'][i]['suggest_url'];
+                        containers[i].className = '';
+                    } else {
+                        //FPC not confirmed
+
+                        containers[i].innerHTML =
+                                '<span title="This FPC has not yet been confirmed"">@' + 
+                                result['curators'][i]['user'] + 
+                                ' (TBC)</span>';
+                        containers[i].className = 'gray';
+                    }
                 } else {
                     var date = document.createElement('span');
         
