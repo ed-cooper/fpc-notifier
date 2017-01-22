@@ -52,38 +52,45 @@ window.onload = function () {
 
             // Check if there are successive curators
             
-            if (result['following'].length > 2) {
+            if (result['curators'].length > 2) {
                 // There are successive curators
 
                 // For each successive curator
-                for (var i = 2; i < result['following'].length; i++) {
+                for (var i = 3; i < result['curators'].length; i++) {
                     // Add date
-                    successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
+                    successive.innerHTML += '<span class="date">Start - End</span>';
 
                     // Check if curator has been suggested
-                    if (result['following'][i] !== '') {
+                    if (result['curators'][i]['user']) {
                         // Curator has been suggested
 
-                        // Check if last character is a '?'
-                        // Thus indicating if the FPC is confirmed
-                        if (result['following'][i][result['following'][i].length - 1] === '?') {
-                            // Curator is not yet confirmed
+                        successive.innerHTML +=
+                                '<a href="' +
+                                result['curators'][i]['suggest_url'] + 
+                                '/" target="_blank" title="@' +
+                                result['curators'][i]['user'] + '">@' +
+                                result['curators'][i]['user'] + '</a>';
 
-                            // Add curator with TBC warning and no link
-                            successive.innerHTML +=
-                                    '<span class="gray" title="This FPC has not yet been confirmed">@' +
-                                    result['following'][i].substr(0, result['following'][i].length - 1) +
-                                    ' (TBC)</span>';
-                        } else {
-                            // Curator is confirmed
-
-                            // Add curator with link
-                            successive.innerHTML +=
-                                    '<a href="https://scratch.mit.edu/users/' + 
-                                    result['following'][i] + '/" target="_blank" title="@' +
-                                    result['following'][i] + '">@' +
-                                    result['following'][i] + '</a>';
-                        }
+//                        // Check if last character is a '?'
+//                        // Thus indicating if the FPC is confirmed
+//                        if (result['following'][i][result['following'][i].length - 1] === '?') {
+//                            // Curator is not yet confirmed
+//
+//                            // Add curator with TBC warning and no link
+//                            successive.innerHTML +=
+//                                    '<span class="gray" title="This FPC has not yet been confirmed">@' +
+//                                    result['following'][i].substr(0, result['following'][i].length - 1) +
+//                                    ' (TBC)</span>';
+//                        } else {
+//                            // Curator is confirmed
+//
+//                            // Add curator with link
+//                            successive.innerHTML +=
+//                                    '<a href="https://scratch.mit.edu/users/' + 
+//                                    result['following'][i] + '/" target="_blank" title="@' +
+//                                    result['following'][i] + '">@' +
+//                                    result['following'][i] + '</a>';
+//                        }
                     } else {
                         // No known FPC for this period
 
