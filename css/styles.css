@@ -48,20 +48,23 @@ header {
     margin: 0 0 5px 0;
 }
 
-.hover-box {
+.shadow-box {
     background-color: #f5f5f5;
     box-shadow: 0 1px 2px #ccc;
     display: block;
 }
 
-.hover-box:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 1px 5px #bbb;
+.shadow-box:hover {
     text-decoration: none;
 }
 
-.hover-box h1 {
+.shadow-box h1 {
     color: black;
+}
+
+.shadow-box.hover:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 1px 5px #bbb;
 }
 
 .date {

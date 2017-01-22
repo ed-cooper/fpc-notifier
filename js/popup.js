@@ -86,6 +86,7 @@ window.onload = function () {
                                 result['curators'][i]['user'] + 
                                 '</span>';
                         
+                        containers[i].parentElement.className = 'box shadow-box hover';
                         containers[i].parentElement.href = result['curators'][i]['suggest_url'];
                         containers[i].className = '';
                     } else {
@@ -147,7 +148,7 @@ window.onload = function () {
                 }
 
                 // Show container for successive curators
-                document.getElementById('successiveContainer').className = 'box hover-box';
+                document.getElementById('successiveContainer').className = 'box shadow-box hover';
             }
 
             // Show notice
