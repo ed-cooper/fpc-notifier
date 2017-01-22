@@ -47,7 +47,7 @@ window.onload = function () {
     
     // Interpret downloaded data
     function downloaded(result) {
-        // Check response was valid
+        // Check response was successful
         if (result['response']['code'] === 0) {
             
             // Load current, next and following curators
