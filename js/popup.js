@@ -43,7 +43,7 @@ window.onload = function () {
             
             // Load current, following and successive curators
             for (var i = 0; i < 3; i++) {
-                if (i < result['curators'].length) {
+                if (i < result['curators'].length && result['curators'][i]['user']) {
                     load(result['curators'][i]['user'], containers[i]);
                 } else {
                     var date = document.createElement('span');
