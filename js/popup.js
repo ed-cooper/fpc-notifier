@@ -11,18 +11,6 @@ window.onload = function () {
 
     // Get date info
     var weekStart;
-    var monthNames = ['Jan',
-                      'Feb',
-                      'Mar',
-                      'Apr',
-                      'May',
-                      'Jun',
-                      'Jul',
-                      'Aug',
-                      'Sep',
-                      'Oct',
-                      'Nov',
-                      'Dec'];
 	
     // Init http request
     var xmlHttp = new XMLHttpRequest();
@@ -205,8 +193,12 @@ window.onload = function () {
     }
 
     // Makes a date human readable
+    // Uses browser language to match users prefrences
     function formatDate(d) {
-        return d.getDate() + ' ' + monthNames[d.getMonth()];
+        return d.toLocaleString(navigator.language, {
+            day: "numeric",
+            month: "short"
+        });
     }
     
     // Add close button click event
