@@ -65,7 +65,11 @@ window.onload = function () {
                         containers[i].parentElement.childNodes[0]
                 );
                 
-                if (i < result['curators'].length && result['curators'][i]['user']) {
+                // Load curator
+                
+                // Check curator is known
+                
+                if (result['curators'][i]['user']) {
 
                     // Check if FPC is confirmed
                     
