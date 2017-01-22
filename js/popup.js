@@ -115,6 +115,7 @@ window.onload = function () {
 
     // Display error messages in every container
     function error() {
+        // TODO: on error, hide containers and show separate div
         containers[0].innerText = 'Error';
         containers[1].innerText = 'Error';
         containers[2].innerText = 'Error';
