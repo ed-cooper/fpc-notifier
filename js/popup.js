@@ -7,7 +7,7 @@ window.onload = function () {
     var alertClose = document.getElementById('alert-close');
 	
     // Get file path, add time-stamp to prevent caching
-    var filePath = 'http://www.scratchtools.tk/fpc/api/v1/json/?u=' + new Date().getTime();
+    var filePath = 'https://scratchtools.tk/fpc/api/v1/json/?u=' + new Date().getTime();
 
     // Get date info
     var weekStart;
