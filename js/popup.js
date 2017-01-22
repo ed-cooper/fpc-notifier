@@ -26,7 +26,12 @@ window.onload = function () {
     
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            downloaded(JSON.parse(xmlHttp.responseText));
+            try {
+                downloaded(JSON.parse(xmlHttp.responseText));
+            } catch(e) {
+                error();
+                console.log('Bad JSON syntax');
+            }
         }
     };
     
