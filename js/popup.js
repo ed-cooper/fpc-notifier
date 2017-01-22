@@ -1,14 +1,16 @@
 window.onload = function () {
     // Get container elements
-    var current = document.getElementById('currentCurator');
-    var next = document.getElementById('nextCurator');
-    var following = document.getElementById('followingCurator');
+    var containers = [
+        document.getElementById('currentCurator'),
+        document.getElementById('nextCurator'),
+        document.getElementById('followingCurator')
+    ];
     var successive = document.getElementById('successiveCurators');
     var alertClose = document.getElementById('alert-close');
-	
+    
     // Get file path, add time-stamp to prevent caching
     var filePath = 'https://scratchtools.tk/fpc/api/v2/json/?u=' + new Date().getTime();
-
+    
     // Init http request
     var xmlHttp = new XMLHttpRequest();
     
@@ -40,15 +42,15 @@ window.onload = function () {
         if (result['response']['code'] === 0) {
 
             // Load current fpc
-            load(result['current'], current);
+            load(result['current'], containers[0]);
 
             if (result['following'].length > 0) {
                 // Load next fpc
-                load(result['following'][0], next);
+                load(result['following'][0], containers[1]);
 
                 if (result['following'].length > 1) {
                     // Load following fpc
-                    load(result['following'][1], following);
+                    load(result['following'][1], containers[2]);
 
                     if (result['following'].length > 2) {
                         // There are successive curators
@@ -97,14 +99,14 @@ window.onload = function () {
                 } else {
                     // Following FPC not known
 
-                    unknown(following);
+                    unknown(containers[2]);
                 }
             } else {
                 // Next and following FPCs are unknown
                 // (Ideally this case shouldn't happen)
 
-                unknown(next);
-                unknown(following);
+                unknown(containers[1]);
+                unknown(containers[2]);
             }
 
             // Show notice
@@ -125,9 +127,9 @@ window.onload = function () {
 
     // Display error messages in every container
     function error() {
-        current.innerText = 'Error';
-        next.innerText = 'Error';
-        following.innerText = 'Error';
+        containers[0].innerText = 'Error';
+        containers[1].innerText = 'Error';
+        containers[2].innerText = 'Error';
     }
 
     // Loads the curator name into the specified container
