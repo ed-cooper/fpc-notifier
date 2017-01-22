@@ -105,7 +105,7 @@ window.onload = function () {
 
             // Check if there are successive curators
             
-            if (result['curators'].length > 2) {
+            if (result['curators'].length > 3) {
                 // There are successive curators
 
                 // For each successive curator
