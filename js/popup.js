@@ -72,7 +72,7 @@ window.onload = function () {
                             successive.innerHTML +=
                                     '<a href="' +
                                     result['curators'][i]['suggest_url'] + 
-                                    '/" target="_blank" title="@' +
+                                    '" target="_blank" title="@' +
                                     result['curators'][i]['user'] + '">@' +
                                     result['curators'][i]['user'] + '</a>';
                         } else {
