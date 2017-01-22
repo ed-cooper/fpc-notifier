@@ -31,7 +31,7 @@ window.onload = function () {
     };
     
     xmlHttp.open('GET', filePath, true);
-    xmlHttp.timeout = 10000;
+    xmlHttp.timeout = 5000;
 
     // Send http request
     xmlHttp.send(null);
