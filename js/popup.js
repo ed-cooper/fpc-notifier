@@ -114,7 +114,12 @@ window.onload = function () {
                 // For each successive curator
                 for (var i = 3; i < result['curators'].length; i++) {
                     // Add date
-                    successive.innerHTML += '<span class="date">Start - End</span>';
+                    successive.innerHTML +=
+                            '<span class="date">' +
+                            formatDate(new Date(result['curators'][i]['start'])) +
+                            ' - ' +
+                            formatDate(new Date(result['curators'][i]['end'])) +
+                            '</span>';
 
                     // Check if curator has been suggested
                     if (result['curators'][i]['user']) {
