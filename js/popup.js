@@ -50,7 +50,7 @@ window.onload = function () {
         // Check response was valid
         if (result['response']['code'] === 0) {
             
-            // Load current, following and successive curators
+            // Load current, next and following curators
             for (var i = 0; i < 3; i++) {
                 
                 // Display week range
