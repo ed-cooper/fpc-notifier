@@ -9,9 +9,6 @@ window.onload = function () {
     // Get file path, add time-stamp to prevent caching
     var filePath = 'https://scratchtools.tk/fpc/api/v2/json/?u=' + new Date().getTime();
 
-    // Get date info
-    var weekStart;
-	
     // Init http request
     var xmlHttp = new XMLHttpRequest();
     
@@ -40,7 +37,6 @@ window.onload = function () {
     // Interpret downloaded data
     function downloaded(result) {
         if (typeof result['error'] === 'undefined') {// Get start date
-            weekStart = new Date(result['date']);
 
             // Load current fpc
             load(result['current'], current, 0);
@@ -173,23 +169,6 @@ window.onload = function () {
         
         element.title = 'The FPC during this period is currently unknown';
         element.innerText = 'Unknown';
-    }
-
-    // Gets a human readable range representing the specified week (0 = this week)
-    function getWeekRange(week) {
-        return formatDate(offsetDate(weekStart, week * 7)) +
-                ' - ' +
-                formatDate(offsetDate(weekStart, (week + 1) * 7));
-    }
-
-    // Adds the specified amount of days to a specified date
-    function offsetDate(d, offset) {
-        var newDate = new Date();
-        
-        newDate.setMonth(d.getMonth());
-        newDate.setDate(d.getDate() + offset);
-        
-        return newDate;
     }
 
     // Makes a date human readable
