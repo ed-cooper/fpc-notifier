@@ -64,33 +64,26 @@ window.onload = function () {
                     if (result['curators'][i]['user']) {
                         // Curator has been suggested
 
-                        successive.innerHTML +=
-                                '<a href="' +
-                                result['curators'][i]['suggest_url'] + 
-                                '/" target="_blank" title="@' +
-                                result['curators'][i]['user'] + '">@' +
-                                result['curators'][i]['user'] + '</a>';
-
-//                        // Check if last character is a '?'
-//                        // Thus indicating if the FPC is confirmed
-//                        if (result['following'][i][result['following'][i].length - 1] === '?') {
-//                            // Curator is not yet confirmed
-//
-//                            // Add curator with TBC warning and no link
-//                            successive.innerHTML +=
-//                                    '<span class="gray" title="This FPC has not yet been confirmed">@' +
-//                                    result['following'][i].substr(0, result['following'][i].length - 1) +
-//                                    ' (TBC)</span>';
-//                        } else {
-//                            // Curator is confirmed
-//
-//                            // Add curator with link
-//                            successive.innerHTML +=
-//                                    '<a href="https://scratch.mit.edu/users/' + 
-//                                    result['following'][i] + '/" target="_blank" title="@' +
-//                                    result['following'][i] + '">@' +
-//                                    result['following'][i] + '</a>';
-//                        }
+                        // Check if curator is confirmed
+                        
+                        if (result['curators'][i]['confirmed']) {
+                            // Curator is confirmed
+                            
+                            successive.innerHTML +=
+                                    '<a href="' +
+                                    result['curators'][i]['suggest_url'] + 
+                                    '/" target="_blank" title="@' +
+                                    result['curators'][i]['user'] + '">@' +
+                                    result['curators'][i]['user'] + '</a>';
+                        } else {
+                            // Curator isn't confirmed, so display TBC label
+                            // and add no link
+                            
+                            successive.innerHTML +=
+                                    '<span class="gray" title="This FPC has not yet been confirmed">@' +
+                                    result['curators'][i]['user'] +
+                                    ' (TBC)</span>';
+                        }
                     } else {
                         // No known FPC for this period
 
