@@ -40,73 +40,61 @@ window.onload = function () {
     function downloaded(result) {
         // Check response was valid
         if (result['response']['code'] === 0) {
-
-            // Load current fpc
-            load(result['current'], containers[0]);
-
-            if (result['following'].length > 0) {
-                // Load next fpc
-                load(result['following'][0], containers[1]);
-
-                if (result['following'].length > 1) {
-                    // Load following fpc
-                    load(result['following'][1], containers[2]);
-
-                    if (result['following'].length > 2) {
-                        // There are successive curators
-
-                        // For each successive curator
-                        for (var i = 2; i < result['following'].length; i++) {
-                            // Add date
-                            successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
-
-                            // Check if curator has been suggested
-                            if (result['following'][i] !== '') {
-                                // Curator has been suggested
-
-                                // Check if last character is a '?'
-                                // Thus indicating if the FPC is confirmed
-                                if (result['following'][i][result['following'][i].length - 1] === '?') {
-                                    // Curator is not yet confirmed
-
-                                    // Add curator with TBC warning and no link
-                                    successive.innerHTML +=
-                                            '<span class="gray" title="This FPC has not yet been confirmed">@' +
-                                            result['following'][i].substr(0, result['following'][i].length - 1) +
-                                            ' (TBC)</span>';
-                                } else {
-                                    // Curator is confirmed
-
-                                    // Add curator with link
-                                    successive.innerHTML +=
-                                            '<a href="https://scratch.mit.edu/users/' + 
-                                            result['following'][i] + '/" target="_blank" title="@' +
-                                            result['following'][i] + '">@' +
-                                            result['following'][i] + '</a>';
-                                }
-                            } else {
-                                // No known FPC for this period
-
-                                // Display unknown message
-                                successive.innerHTML +=
-                                        '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
-                            }
-                        }
-
-                        // Show container for successive curators
-                        document.getElementById('successiveContainer').className = 'box hover-box';
-                    }
+            
+            // Load current, following and successive curators
+            for (var i = 0; i < 3; i++) {
+                if (i < result['curators'].length) {
+                    load(result['curators'][i]['user'], containers[i]);
                 } else {
-                    // Following FPC not known
-
-                    unknown(containers[2]);
+                    unknown(containers[i]);
                 }
-            } else {
-                // Next and following FPCs are unknown
-                // (Ideally this case shouldn't happen)
+            }
 
-                unknown(containers[1]);
-                unknown(containers[2]);
+            // Check if there are successive curators
+            
+            if (result['following'].length > 2) {
+                // There are successive curators
+
+                // For each successive curator
+                for (var i = 2; i < result['following'].length; i++) {
+                    // Add date
+                    successive.innerHTML += '<span class="date">' + getWeekRange(i + 1) + '</span>';
+
+                    // Check if curator has been suggested
+                    if (result['following'][i] !== '') {
+                        // Curator has been suggested
+
+                        // Check if last character is a '?'
+                        // Thus indicating if the FPC is confirmed
+                        if (result['following'][i][result['following'][i].length - 1] === '?') {
+                            // Curator is not yet confirmed
+
+                            // Add curator with TBC warning and no link
+                            successive.innerHTML +=
+                                    '<span class="gray" title="This FPC has not yet been confirmed">@' +
+                                    result['following'][i].substr(0, result['following'][i].length - 1) +
+                                    ' (TBC)</span>';
+                        } else {
+                            // Curator is confirmed
+
+                            // Add curator with link
+                            successive.innerHTML +=
+                                    '<a href="https://scratch.mit.edu/users/' + 
+                                    result['following'][i] + '/" target="_blank" title="@' +
+                                    result['following'][i] + '">@' +
+                                    result['following'][i] + '</a>';
+                        }
+                    } else {
+                        // No known FPC for this period
+
+                        // Display unknown message
+                        successive.innerHTML +=
+                                '<span class="gray" title="The FPC during this period is currently unknown">Unknown</span>';
+                    }
+                }
+
+                // Show container for successive curators
+                document.getElementById('successiveContainer').className = 'box hover-box';
             }
 
             // Show notice
