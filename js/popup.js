@@ -40,15 +40,15 @@ window.onload = function () {
         if (result['response']['code'] === 0) {
 
             // Load current fpc
-            load(result['current'], current, 0);
+            load(result['current'], current);
 
             if (result['following'].length > 0) {
                 // Load next fpc
-                load(result['following'][0], next, 1);
+                load(result['following'][0], next);
 
                 if (result['following'].length > 1) {
                     // Load following fpc
-                    load(result['following'][1], following, 2);
+                    load(result['following'][1], following);
 
                     if (result['following'].length > 2) {
                         // There are successive curators
@@ -97,14 +97,14 @@ window.onload = function () {
                 } else {
                     // Following FPC not known
 
-                    unknown(following, 2);
+                    unknown(following);
                 }
             } else {
                 // Next and following FPCs are unknown
                 // (Ideally this case shouldn't happen)
 
-                unknown(next, 1);
-                unknown(following, 2);
+                unknown(next);
+                unknown(following);
             }
 
             // Show notice
@@ -131,7 +131,7 @@ window.onload = function () {
     }
 
     // Loads the curator name into the specified container
-    function load(user, element, index) {
+    function load(user, element) {
         // Check if curator has been suggested
         
         if (user !== '') {
@@ -140,7 +140,7 @@ window.onload = function () {
             var date = document.createElement('span');
 
             date.className = 'date';
-            date.innerText = getWeekRange(index);
+            date.innerText = 'Start - End';
 
             element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
 
@@ -161,16 +161,16 @@ window.onload = function () {
             }
         } else {
             // Curator is not known for this period
-            unknown(element, index);
+            unknown(element);
         }
     }
 
     // Marks the fpc for the specified element as unknown
-    function unknown(element, index) {
+    function unknown(element) {
         var date = document.createElement('span');
         
         date.className = 'date';
-        date.innerText = getWeekRange(index);
+        date.innerText = 'Start - End';
         
         element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
         
