@@ -178,8 +178,8 @@ window.onload = function () {
     // Uses browser language to match users prefrences
     function formatDate(d) {
         return d.toLocaleString(navigator.language, {
-            day: "numeric",
-            month: "short"
+            day: 'numeric',
+            month: 'short'
         });
     }
     
