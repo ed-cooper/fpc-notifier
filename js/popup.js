@@ -58,7 +58,10 @@ window.onload = function () {
                 var date = document.createElement('span');
 
                 date.className = 'date';
-                date.innerText = 'Start - End';
+                date.innerText = 
+                        formatDate(new Date(result['curators'][i]['start'])) +
+                        ' - ' +
+                        formatDate(new Date(result['curators'][i]['end']));
 
                 containers[i].parentElement.insertBefore(
                         date, 
