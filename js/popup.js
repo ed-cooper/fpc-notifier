@@ -58,7 +58,7 @@ window.onload = function () {
                 var date = document.createElement('span');
 
                 date.className = 'date';
-                date.innerText = 
+                date.innerHTML = 
                         formatDate(new Date(result['curators'][i]['start'])) +
                         ' - ' +
                         formatDate(new Date(result['curators'][i]['end']));
@@ -100,7 +100,7 @@ window.onload = function () {
                     }
                 } else {
                     containers[i].title = 'The FPC during this period is currently unknown';
-                    containers[i].innerText = 'Unknown';
+                    containers[i].innerHTML = 'Unknown';
                 }
             }
 
@@ -170,9 +170,9 @@ window.onload = function () {
     // Display error messages in every container
     function error() {
         // TODO: on error, hide containers and show separate div
-        containers[0].innerText = 'Error';
-        containers[1].innerText = 'Error';
-        containers[2].innerText = 'Error';
+        containers[0].innerHTML = 'Error';
+        containers[1].innerHTML = 'Error';
+        containers[2].innerHTML = 'Error';
     }
 
     // Makes a date human readable
