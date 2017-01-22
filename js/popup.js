@@ -77,25 +77,19 @@ window.onload = function () {
                     // Check if FPC is confirmed
                     
                     if (result['curators'][i]['confirmed']) {
-                        //FPC was confirmed
-
-                        containers[i].innerHTML =
-                                '<span title="@' +
-                                result['curators'][i]['user'] +
-                                '">@' +
-                                result['curators'][i]['user'] + 
-                                '</span>';
+                        // FPC was confirmed
+                        
+                        containers[i].title = '@' + result['curators'][i]['user'];
+                        containers[i].innerHTML = '@' + result['curators'][i]['user'];
+                        containers[i].className = '';
                         
                         containers[i].parentElement.className = 'box shadow-box hover';
                         containers[i].parentElement.href = result['curators'][i]['suggest_url'];
-                        containers[i].className = '';
                     } else {
-                        //FPC not confirmed
+                        // FPC not confirmed
 
-                        containers[i].innerHTML =
-                                '<span title="This FPC has not yet been confirmed">@' + 
-                                result['curators'][i]['user'] + 
-                                ' (TBC)</span>';
+                        containers[i].innerHTML = '@' + result['curators'][i]['user'] + ' (TBC)';
+                        containers[i].title = 'This FPC has not yet been confirmed';
                         containers[i].className = 'gray';
                     }
                 } else {
