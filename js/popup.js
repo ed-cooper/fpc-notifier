@@ -52,17 +52,20 @@ window.onload = function () {
             
             // Load current, following and successive curators
             for (var i = 0; i < 3; i++) {
+                
+                // Display week range
+                
+                var date = document.createElement('span');
+
+                date.className = 'date';
+                date.innerText = 'Start - End';
+
+                containers[i].parentElement.insertBefore(
+                        date, 
+                        containers[i].parentElement.childNodes[0]
+                );
+                
                 if (i < result['curators'].length && result['curators'][i]['user']) {
-
-                    var date = document.createElement('span');
-
-                    date.className = 'date';
-                    date.innerText = 'Start - End';
-
-                    containers[i].parentElement.insertBefore(
-                            date, 
-                            containers[i].parentElement.childNodes[0]
-                    );
 
                     // Check if FPC is confirmed
                     
@@ -88,16 +91,6 @@ window.onload = function () {
                         containers[i].className = 'gray';
                     }
                 } else {
-                    var date = document.createElement('span');
-        
-                    date.className = 'date';
-                    date.innerText = 'Start - End';
-
-                    containers[i].parentElement.insertBefore(
-                            date, 
-                            containers[i].parentElement.childNodes[0]
-                    );
-
                     containers[i].title = 'The FPC during this period is currently unknown';
                     containers[i].innerText = 'Unknown';
                 }
