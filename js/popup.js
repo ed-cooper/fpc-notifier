@@ -174,38 +174,6 @@ window.onload = function () {
         containers[2].innerText = 'Error';
     }
 
-    // Loads the curator name into the specified container
-    function load(user, element) {
-        // Check if curator has been suggested
-        
-        if (user !== '') {
-            // Curator has been suggested for this period
-            
-            var date = document.createElement('span');
-
-            date.className = 'date';
-            date.innerText = 'Start - End';
-
-            element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
-
-            if (user.endsWith('?')) {
-                //FPC not confirmed
-                
-                element.innerHTML =
-                        '<span title="This FPC has not yet been confirmed"">@' + 
-                        user.substring(0, user.length - 1) + 
-                        ' (TBC)</span>';
-                element.className = 'gray';
-            } else {
-                //FPC was confirmed
-                
-                element.innerHTML = '<span title="@' + user +'">@' + user + '</span>';
-                element.parentElement.href = 'https://scratch.mit.edu/users/' + user + '/';
-                element.className = '';
-            }
-        }
-    }
-
     // Makes a date human readable
     // Uses browser language to match users prefrences
     function formatDate(d) {
