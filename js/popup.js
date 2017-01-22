@@ -76,6 +76,7 @@ window.onload = function () {
                 // Check curator is known
                 
                 if (result['curators'][i]['user']) {
+                    // Curator is known
 
                     // Check if FPC is confirmed
                     
@@ -97,6 +98,8 @@ window.onload = function () {
                         parent.title = 'This FPC has not yet been confirmed';
                     }
                 } else {
+                    // Curator not known
+                    
                     containers[i].innerHTML = 'Unknown';
                     
                     parent.title = 'The FPC during this period is currently unknown';
