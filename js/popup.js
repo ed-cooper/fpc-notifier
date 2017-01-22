@@ -46,7 +46,18 @@ window.onload = function () {
                 if (i < result['curators'].length) {
                     load(result['curators'][i]['user'], containers[i]);
                 } else {
-                    unknown(containers[i]);
+                    var date = document.createElement('span');
+        
+                    date.className = 'date';
+                    date.innerText = 'Start - End';
+
+                    containers[i].parentElement.insertBefore(
+                            date, 
+                            containers[i].parentElement.childNodes[0]
+                    );
+
+                    containers[i].title = 'The FPC during this period is currently unknown';
+                    containers[i].innerText = 'Unknown';
                 }
             }
 
@@ -150,23 +161,7 @@ window.onload = function () {
                 element.parentElement.href = 'https://scratch.mit.edu/users/' + user + '/';
                 element.className = '';
             }
-        } else {
-            // Curator is not known for this period
-            unknown(element);
         }
-    }
-
-    // Marks the fpc for the specified element as unknown
-    function unknown(element) {
-        var date = document.createElement('span');
-        
-        date.className = 'date';
-        date.innerText = 'Start - End';
-        
-        element.parentElement.insertBefore(date, element.parentElement.childNodes[0]);
-        
-        element.title = 'The FPC during this period is currently unknown';
-        element.innerText = 'Unknown';
     }
 
     // Makes a date human readable
