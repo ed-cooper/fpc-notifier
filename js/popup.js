@@ -33,10 +33,11 @@ window.onload = function () {
 
     // Send http request
     xmlHttp.send(null);
-	
+    
     // Interpret downloaded data
     function downloaded(result) {
-        if (typeof result['error'] === 'undefined') {// Get start date
+        // Check response was valid
+        if (result['response']['code'] === 0) {
 
             // Load current fpc
             load(result['current'], current, 0);
@@ -113,6 +114,12 @@ window.onload = function () {
             }
         } else {
             error();
+            console.log(
+                    'Error: code ' + 
+                    result['response']['code'] + 
+                    ' - ' + 
+                    result['response']['description']
+            );
         }
     }
 
