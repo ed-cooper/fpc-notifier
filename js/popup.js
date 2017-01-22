@@ -92,7 +92,7 @@ window.onload = function () {
                         //FPC not confirmed
 
                         containers[i].innerHTML =
-                                '<span title="This FPC has not yet been confirmed>@' + 
+                                '<span title="This FPC has not yet been confirmed">@' + 
                                 result['curators'][i]['user'] + 
                                 ' (TBC)</span>';
                         containers[i].className = 'gray';
