@@ -54,7 +54,7 @@ header {
     display: block;
 }
 
-.shadow-box:hover {
+.shadow-box:hover, .shadow-box:focus {
     text-decoration: none;
 }
 
@@ -66,7 +66,8 @@ header {
     background-color: #f5f5f5;
 }
 
-.shadow-box.hover:hover {
+.shadow-box.hover:hover, .shadow-box.hover:focus {
+    outline: 0;
     background-color: #f8f8f8;
     box-shadow: 0 1px 5px #bbb;
 }
@@ -79,10 +80,11 @@ header {
 
 a {
     text-decoration: none;
-	color: #0066cc;
+    color: #0066cc;
 }
 
-a:hover {
+a:hover, a:focus {
+    outline: 0;
     text-decoration: underline;
 }
 
