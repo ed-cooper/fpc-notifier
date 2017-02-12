@@ -143,12 +143,25 @@ window.onload = function () {
                         if (result['curators'][i]['confirmed']) {
                             // Curator is confirmed
                             
-                            successive.innerHTML +=
-                                    '<a href="' +
-                                    result['curators'][i]['suggest_url'] + 
-                                    '" target="_blank" title="@' +
-                                    result['curators'][i]['user'] + '">@' +
-                                    result['curators'][i]['user'] + '</a>';
+                            // Check if curator has any remaining slots
+                            
+                            if (!result['curators'][i]['full']) {
+                                // Curator has remaining slots
+                                
+                                successive.innerHTML +=
+                                        '<a href="' +
+                                        result['curators'][i]['suggest_url'] + 
+                                        '" target="_blank" title="@' +
+                                        result['curators'][i]['user'] + '">@' +
+                                        result['curators'][i]['user'] + '</a>';
+                            } else {
+                                // Curator is full
+                            
+                                successive.innerHTML +=
+                                        '<span class="gray" title="This FPC is full">@' +
+                                        result['curators'][i]['user'] +
+                                        ' (FULL)</span>';
+                            }
                         } else {
                             // Curator isn't confirmed, so display TBC label
                             // and add no link
