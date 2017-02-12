@@ -83,12 +83,25 @@ window.onload = function () {
                     if (result['curators'][i]['confirmed']) {
                         // FPC was confirmed
                         
-                        containers[i].innerHTML = '@' + result['curators'][i]['user'];
-                        containers[i].className = '';
+                        // Check if FPC has any remaining slots
                         
-                        parent.className = 'box shadow-box hover';
-                        parent.title = '@' + result['curators'][i]['user'];
-                        parent.href = result['curators'][i]['suggest_url'];
+                        if (!result['curators'][i]['full']) {
+                            // FPC has remaining slots
+                            
+                            containers[i].innerHTML = '@' + result['curators'][i]['user'];
+                            containers[i].className = '';
+
+                            parent.className = 'box shadow-box hover';
+                            parent.title = '@' + result['curators'][i]['user'];
+                            parent.href = result['curators'][i]['suggest_url'];
+                        } else {
+                            // FPC is full
+                            
+                            containers[i].innerHTML = '@' + result['curators'][i]['user'] + ' (FULL)';
+                            containers[i].className = 'gray';
+
+                            parent.title = 'This FPC is full';
+                        }
                     } else {
                         // FPC not confirmed
 
