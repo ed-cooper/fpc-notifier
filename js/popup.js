@@ -15,13 +15,11 @@ window.onload = function () {
     var xmlHttp = new XMLHttpRequest();
     
     xmlHttp.ontimeout = function() {
-        console.log('Timeout');
-        error();
+        error('Response timeout (took longer than ' + xmlHttp.timeout + 'ms)');
     };
     
     xmlHttp.onerror = function() {
-        console.log('Error');
-        error();
+        error('Status code error: ' + xmlHttp.status);
     };
     
     xmlHttp.onreadystatechange = function() {
@@ -30,8 +28,7 @@ window.onload = function () {
                 downloaded(JSON.parse(xmlHttp.responseText));
             } catch(e) {
                 if (e instanceof SyntaxError) {
-                    error();
-                    console.log('Bad JSON syntax');
+                    error('Bad JSON syntax');
                 } else {
                     throw e;
                 }
@@ -190,22 +187,22 @@ window.onload = function () {
                 document.getElementById('alert').className = 'box';
             }
         } else {
-            error();
-            console.log(
-                    'Error: code ' + 
-                    result['response']['code'] + 
-                    ' - ' + 
-                    result['response']['description']
+            error(
+                'Error: code ' + 
+                result['response']['code'] + 
+                ' - ' + 
+                result['response']['description']
             );
         }
     }
 
     // Display error messages in every container
-    function error() {
+    function error(message) {
         // TODO: on error, hide containers and show separate div
         containers[0].innerHTML = 'Error';
         containers[1].innerHTML = 'Error';
         containers[2].innerHTML = 'Error';
+        console.error(message);
     }
 
     // Makes a date human readable
