@@ -53,15 +53,18 @@ window.onload = function () {
                 // Get container parent
                 var parent = containers[i].parentElement;
                 
+                // Get curator
+                var curator = result['curators'][i];
+                
                 // Display week range
                 
                 var date = document.createElement('span');
 
                 date.className = 'date';
                 date.innerHTML = 
-                        formatDate(new Date(result['curators'][i]['start'])) +
+                        formatDate(new Date(curator['start'])) +
                         ' - ' +
-                        formatDate(new Date(result['curators'][i]['end']));
+                        formatDate(new Date(curator['end']));
 
                 parent.insertBefore(
                         date, 
@@ -72,29 +75,29 @@ window.onload = function () {
                 
                 // Check curator is known
                 
-                if (result['curators'][i]['user']) {
+                if (curator['user']) {
                     // Curator is known
 
                     // Check if FPC is confirmed
                     
-                    if (result['curators'][i]['confirmed']) {
+                    if (curator['confirmed']) {
                         // FPC was confirmed
                         
                         // Check if FPC has any remaining slots
                         
-                        if (!result['curators'][i]['full']) {
+                        if (!curator['full']) {
                             // FPC has remaining slots
                             
-                            containers[i].innerHTML = '@' + result['curators'][i]['user'];
+                            containers[i].innerHTML = '@' + curator['user'];
                             containers[i].className = '';
 
                             parent.className = 'box shadow-box hover';
-                            parent.title = '@' + result['curators'][i]['user'];
-                            parent.href = result['curators'][i]['suggest_url'];
+                            parent.title = '@' + curator['user'];
+                            parent.href = curator['suggest_url'];
                         } else {
                             // FPC is full
                             
-                            containers[i].innerHTML = '@' + result['curators'][i]['user'] + ' (FULL)';
+                            containers[i].innerHTML = '@' + curator['user'] + ' (FULL)';
                             containers[i].className = 'gray';
 
                             parent.title = 'This FPC is full';
@@ -102,7 +105,7 @@ window.onload = function () {
                     } else {
                         // FPC not confirmed
 
-                        containers[i].innerHTML = '@' + result['curators'][i]['user'] + ' (TBC)';
+                        containers[i].innerHTML = '@' + curator['user'] + ' (TBC)';
                         containers[i].className = 'gray';
                         
                         parent.title = 'This FPC has not yet been confirmed';
@@ -123,40 +126,43 @@ window.onload = function () {
 
                 // For each successive curator
                 for (var i = 3; i < result['curators'].length; i++) {
+                    // Get curator
+                    var curator = result['curators'][i];
+                    
                     // Add date
                     successive.innerHTML +=
                             '<span class="date">' +
-                            formatDate(new Date(result['curators'][i]['start'])) +
+                            formatDate(new Date(curator['start'])) +
                             ' - ' +
-                            formatDate(new Date(result['curators'][i]['end'])) +
+                            formatDate(new Date(curator['end'])) +
                             '</span>';
 
                     // Check if curator has been suggested
-                    if (result['curators'][i]['user']) {
+                    if (curator['user']) {
                         // Curator has been suggested
 
                         // Check if curator is confirmed
                         
-                        if (result['curators'][i]['confirmed']) {
+                        if (curator['confirmed']) {
                             // Curator is confirmed
                             
                             // Check if curator has any remaining slots
                             
-                            if (!result['curators'][i]['full']) {
+                            if (!curator['full']) {
                                 // Curator has remaining slots
                                 
                                 successive.innerHTML +=
                                         '<a href="' +
-                                        result['curators'][i]['suggest_url'] + 
+                                        curator['suggest_url'] + 
                                         '" target="_blank" title="@' +
-                                        result['curators'][i]['user'] + '">@' +
-                                        result['curators'][i]['user'] + '</a>';
+                                        curator['user'] + '">@' +
+                                        curator['user'] + '</a>';
                             } else {
                                 // Curator is full
                             
                                 successive.innerHTML +=
                                         '<span class="gray" title="This FPC is full">@' +
-                                        result['curators'][i]['user'] +
+                                        curator['user'] +
                                         ' (FULL)</span>';
                             }
                         } else {
@@ -165,7 +171,7 @@ window.onload = function () {
                             
                             successive.innerHTML +=
                                     '<span class="gray" title="This FPC has not yet been confirmed">@' +
-                                    result['curators'][i]['user'] +
+                                    curator['user'] +
                                     ' (TBC)</span>';
                         }
                     } else {
