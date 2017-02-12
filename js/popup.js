@@ -194,9 +194,9 @@ window.onload = function () {
             }
         } else {
             error(
-                'Server-side error: code ' + 
-                result['response']['code'] + 
-                ' - ' + 
+                'Server-side error: code ' +
+                result['response']['code'] +
+                ' - ' +
                 result['response']['description']
             );
         }
