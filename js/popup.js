@@ -190,7 +190,7 @@ window.onload = function () {
             // Show notice
             if (result['announcement']['message']) {
                 document.getElementById('alert-text').innerHTML = result['message'];
-                document.getElementById('alert').className = 'box box-hover';
+                document.getElementById('alert').className = 'box';
             }
         } else {
             error(
