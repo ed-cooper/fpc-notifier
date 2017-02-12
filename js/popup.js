@@ -194,7 +194,7 @@ window.onload = function () {
             }
         } else {
             error(
-                'Error: code ' + 
+                'Server-side error: code ' + 
                 result['response']['code'] + 
                 ' - ' + 
                 result['response']['description']
