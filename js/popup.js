@@ -188,9 +188,9 @@ window.onload = function () {
             }
 
             // Show notice
-            if (result['message']) {
+            if (result['announcement']['message']) {
                 document.getElementById('alert-text').innerHTML = result['message'];
-                document.getElementById('alert').className = 'box';
+                document.getElementById('alert').className = 'box box-hover';
             }
         } else {
             error(
