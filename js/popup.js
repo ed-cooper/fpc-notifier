@@ -45,7 +45,7 @@ window.onload = function () {
     // Interpret downloaded data
     function downloaded(result) {
         // Check response was successful
-        if (result['response']['code'] === 0) {
+        if (result.hasOwnProperty('response') && result['response']['code'] === 0) {
             
             // Load current, next and following curators
             for (var i = 0; i < 3; i++) {
@@ -193,12 +193,16 @@ window.onload = function () {
                 document.getElementById('alert').className = 'box';
             }
         } else {
-            error(
-                'Server-side error: code ' +
-                result['response']['code'] +
-                ' - ' +
-                result['response']['description']
-            );
+            if (result.hasOwnProperty('response')) {
+                error(
+                    'Server-side error: code ' +
+                    result['response']['code'] +
+                    ' - ' +
+                    result['response']['description']
+                );
+            } else {
+                error('Server-side error, no response info');
+            }
         }
     }
 
